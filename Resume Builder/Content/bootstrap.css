@@ -2025,8 +2025,10 @@ textarea.input-lg {
 
 .btn:hover,
 .btn:focus {
-  color: #333333;
+  color: #F7F403;
   text-decoration: none;
+  background-color: -webkit-linear-gradient(to right, #ffb75e, #ed8f03);
+  border-color: #F7F403; 
 }
 
 .btn:active,

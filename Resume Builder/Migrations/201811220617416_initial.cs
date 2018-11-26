@@ -1,8 +1,7 @@
 namespace Resume_Builder.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class initial : DbMigration
     {
         public override void Up()
@@ -16,9 +15,9 @@ namespace Resume_Builder.Migrations
                         PreviewImagePath = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
-            
+
         }
-        
+
         public override void Down()
         {
             DropTable("dbo.Resumes");

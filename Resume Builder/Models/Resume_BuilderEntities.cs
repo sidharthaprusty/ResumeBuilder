@@ -5,9 +5,9 @@ namespace Resume_Builder.Models
     public class Resume_BuilderEntities : DbContext
     {
         public Resume_BuilderEntities()
-            : base("ResumeEntities")
+            : base("Resume_BuilderEntities")
         { }
 
-        public DbSet<Resume_Builder.Models.Resume> Resume { get; set; }
+        public DbSet<Resume_Builder.Models.Resume> Resumes { get; set; }
     }
 }

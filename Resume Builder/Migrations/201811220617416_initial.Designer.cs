@@ -13,7 +13,7 @@ namespace Resume_Builder.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201811220524322_initial"; }
+            get { return "201811220617416_initial"; }
         }
         
         string IMigrationMetadata.Source

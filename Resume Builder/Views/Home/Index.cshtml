@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Resume_Builder.Models.Resume>
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,30 +10,25 @@
             Choose one Resume Template
         </h3>
         <div class="row">
-            <div class="col-4">
-                <div class="team-member">
-                    <div class="team-img">
-                        <img src="~/Content/images/t2.jpg" alt="team member" class="img-fluid">
-                        <div class="team-hover">
-                            <div class="desk">
-                                <h4>vehicula eleme!</h4>
-                                <p>estibulum ac diam sit amet quam vehicula elementum.</p>
-                            </div>
-                            <div class="s-link">
-                                <a href="#">
-                                    <i class="btn" style="background-color: -webkit-linear-gradient(to right, #ffb75e, #ed8f03);">Build Resume</i>
-                                </a>                              
+            @foreach(var resume in Model)
+            {
+                <div class="col-4" style="padding-bottom : 50px; ">
+                    <div class="team-member">
+                        <div class="team-img">
+                            <img src="@resume.PreviewImagePath" width="600" height="400" alt="team member" class="img-fluid">
+                            <div class="team-hover">
+                                <div class="desk">
+                                    <h4>@resume.Name</h4>
+                                    <p>@resume.Description.</p>
+                                </div>
+                                <div class="s-link">
+                                    @Html.ActionLink("Build Resume", "FillDetails", "Home", new { id = resume.Id },null)
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="team-title">
-                        <h5>Franklin Harbet</h5>
-                        <span>HR Manager</span>
-                    </div>
                 </div>
-            </div>
-
+            }
         </div>
-        <!-- //team -->
-        
+        <!-- //team -->      
     </div>

@@ -70,6 +70,9 @@
     <Reference Include="Jint">
       <HintPath>..\packages\itextsharp.xfaworker.5.5.13\lib\net40\Jint.dll</HintPath>
     </Reference>
+    <Reference Include="Json">
+      <HintPath>..\packages\JSON.1.0.1\lib\net40\Json.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -251,6 +254,7 @@
     <Content Include="Content\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\webfonts\fa-solid-900.woff" />
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\info.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

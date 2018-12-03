@@ -20,8 +20,16 @@ namespace Resume_Builder.Controllers
             return View();
         }
 
+        [HttpGet]
         public ActionResult FillDetails()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FillDetails(FormCollection values, int id)
+        {
+
             return View();
         }
 

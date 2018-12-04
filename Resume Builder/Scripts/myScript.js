@@ -19,25 +19,82 @@
 //ajaxhttp.send(null);
 ////console.log(ajaxhttp);
 
-function onSubmit(form) {
-    var info = [];
+function jsonBuilder(){
+    var achivements = [];
+    var skills = [];
     var name = $("input[name=name]").val();
     var email = $("input[name=email]").val();
     var phone = $("input[name=phone]").val();
-    var careerObj = $("input[name=careerObj]").val();
-
-    info["name"] = name;
-    info["email"] = email;
-    info["phone"] = phone;
-    info["careerObj"] = careerObj;
     
+    var sex = $("#sex :selected").text();
+    var father = $("input[name=father]").val();
+    var dob = $("input[name=dob]").val();
+    var maritalSts = $("#maritalSts :selected").text();
+    var nationality = $("#nationality :selected").text();
+    var careerObj = $.trim($("#careerObj").val());
+
+    //map array values to var
+    var achievements = $("input[name='achievements[]']").map(function () { return $(this).val(); }).get();
+    var skills = $("input[name='skills[]']").map(function () { return $(this).val(); }).get();
+
+    var academics10 = [];
+    var academics12 = [];
+    var academicsGr = [];
+    var academicsPG = [];
+
+    var board10 = $("#board10 :selected").text();
+    var school = $("input[name=school]").val();
+    var year10 = $("input[name=year10]").val();
+    var per10 = $("input[name=per10]").val();
+    
+    academics10 = [board10, school, year10, per10];
+
+    var board12 = $("#board12 :selected").text();
+    var jrCollege = $("input[name=jrCollege]").val();
+    var studyField = $("#studyField :selected").text();
+    var year12 = $("input[name=year12]").val();
+    var per12 = $("input[name=per12]").val();
+
+    academics12 = [board12, jrCollege, studyField, year12, per12];
+
+    var university = $("input[name=university]").val();
+    var gradCollege = $("input[name=gradCollege]").val();
+    var gradDegree = $("input[name=gradDegree]").val();
+    var yearGr = $("input[name=yearGr]").val();
+    var perGrad = $("input[name=perGrad]").val();
+
+    academicsGr = [university, gradCollege, gradDegree, yearGr, perGrad];
+
+    var pguniversity = $("input[name=pguniversity]").val();
+    var pgCollege = $("input[name=pgCollege]").val();
+    var pgDegree = $("input[name=pgDegree]").val();
+    var yearPG = $("input[name=yearPG]").val();
+    var perPG = $("input[name=perPG]").val();
+
+    academicsPG = [pguniversity, pgCollege, pgDegree, yearPG, perPG];
+
+
     var data = {
         "name": name,
         "email":email,
         "phone": phone,
-        "careerObj":careerObj
+        "careerObj": careerObj,
+        "sex":sex,
+        "father": father,
+        "dob": dob,
+        "maritalSts": maritalSts,
+        "nationality": nationality,
+        "careerObj": careerObj,
+        "achievements": [achievements],
+        "skills": [skills],
+        "academics10": academics10,
+        "academics12": academics12,
+        "academicsGr": academicsGr,
+        "academicsPG": academicsPG
     };
-    console.log(info);
+    var jsonVal = JSON.stringify(data);
+    console.log(data);
+    console.log(jsonVal)
     return false; //don't submit
 }
 
@@ -76,7 +133,8 @@ function nextPrev(n) {
     // if you have reached the end of the form... :
     if (currentTab >= x.length) {
         //...the form gets submitted:
-        document.getElementById("info").submit();
+        jsonBuilder();
+        //document.getElementById("info").submit();
         return false;
     }
     // Otherwise, display the correct tab:

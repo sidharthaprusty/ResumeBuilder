@@ -1,4 +1,5 @@
-﻿using Resume_Builder.Models;
+﻿using Newtonsoft.Json.Linq;
+using Resume_Builder.Models;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -33,7 +34,9 @@ namespace Resume_Builder.Controllers
         [HttpPost]
         public ActionResult GetDetails(string formData)
         {
-            formData = formData.Replace(@"\", "");
+            JObject _jObject = new JObject();
+            _jObject = JObject.Parse(formData);
+
             return RedirectToAction("FillDetails");
         }
 

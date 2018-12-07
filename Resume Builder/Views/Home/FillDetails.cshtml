@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Fill Your Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,7 +7,7 @@
         {
            
             <!-- First Tab -->   
-            <div class="tab">
+            @*<div class="tab">
              <h3 style="text-align: center;">
                  Fill Your Personal Info
              </h3>
@@ -434,7 +433,7 @@
                         <input type="text"name="perGrad" class="form-control" placeholder="Enter Graduation % or Grade ">
                     </div>
                 </div>
-            </div>
+            </div>*@
             
             <!--Sixth Tab-->
             <div class="tab">
@@ -465,7 +464,7 @@
                 <div class="form-group">
                     <label class="control-label col-sm-2">Year of Completion:</label>
                     <div class="col-sm-10">
-                        <input type="number" min="2005" max="2099" step="1" value="YYYY" name="yearPG" class="form-control" placeholder="YYYY">
+                        <input type="number" min="2005" max="2099" step="1" name="yearPG" class="form-control" placeholder="YYYY">
                     </div>
                 </div>
 
@@ -494,42 +493,9 @@
         }
  </div>
 <script src="~/Scripts/myScript.js"></script>
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
 <script>
-    //*******Dynamic Input Field for Achievements *********//
-    $(document).ready(function () {
-        var i = 1;
-        var j = 1;
-        $('#add').click(function () {
-            i++;
-            $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="achievements[]" placeholder="Enter your achievements" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
-        });
-        $(document).on('click', '.btn_remove', function () {
-            var button_id = $(this).attr("id");
-            $('#row' + button_id + '').remove();
-        });
-
-        $('#addSkill').click(function () {
-            j++;
-            $('#dynamic_field_skill').append('<tr id="row' + j + '"><td><input type="text" name="skills[]" placeholder="Enter your skills" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + j + '" class="btn btn-danger btn_remove">X</button></td></tr>');
-        });
-        $(document).on('click', '.btn_remove', function () {
-            var button_id = $(this).attr("id");
-            $('#row' + button_id + '').remove();
-        });
-
-        //$('#submit').click(function () {
-        //    $.ajax({
-        //        url: "name.php",
-        //        method: "POST",
-        //        data: $('#add_name').serialize(),
-        //        success: function (data) {
-        //            alert(data);
-        //            $('#add_name')[0].reset();
-        //        }
-        //    });
-        //});
-    });
+    
 </script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

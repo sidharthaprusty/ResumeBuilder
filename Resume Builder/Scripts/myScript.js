@@ -1,4 +1,5 @@
-﻿//var output= document.getElementById('output');
+﻿/// 
+//var output= document.getElementById('output');
 //var ajaxhttp = new XMLHttpRequest(); //adds functionality for ajax request
 //var url = "https://my-json-server.typicode.com/typicode/demo/db";
 ////var url = "https://raw.githubusercontent.com/sidharthaprusty/ResumeBuilder/master/info.json";
@@ -93,9 +94,7 @@ function jsonBuilder(){
         "academicsPG": academicsPG
     };
     var jsonVal = JSON.stringify(data);
-    console.log(data);
-    console.log(jsonVal)
-    return false; //don't submit
+    return jsonVal;
 }
 
 
@@ -133,8 +132,28 @@ function nextPrev(n) {
     // if you have reached the end of the form... :
     if (currentTab >= x.length) {
         //...the form gets submitted:
-        jsonBuilder();
+        
+        var formData = jsonBuilder();
+        //var id = $(this).attr(id);
+        //console.log("id=" + id);
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/GetDetails",
+            data: "formData=" + formData,
+            success: function (response) {
+                alert(response.toString());
+                document.getElementById("info").submit();
+            },
+            failure: function (response) {
+                alert("Failure");
+            },
+            error: function (response) {
+                alert(response.toString());
+            }
+        });
         //document.getElementById("info").submit();
+
         return false;
     }
     // Otherwise, display the correct tab:
@@ -173,3 +192,25 @@ function fixStepIndicator(n) {
     x[n].className += " active";
 }
 
+//*******Dynamic Input Field for Achievements *********//
+$(document).ready(function () {
+    var i = 1;
+    var j = 1;
+    $('#add').click(function () {
+        i++;
+        $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="achievements[]" placeholder="Enter your achievements" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+    });
+    $(document).on('click', '.btn_remove', function () {
+        var button_id = $(this).attr("id");
+        $('#row' + button_id + '').remove();
+    });
+
+    $('#addSkill').click(function () {
+        j++;
+        $('#dynamic_field_skill').append('<tr id="row' + j + '"><td><input type="text" name="skills[]" placeholder="Enter your skills" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + j + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+    });
+    $(document).on('click', '.btn_remove', function () {
+        var button_id = $(this).attr("id");
+        $('#row' + button_id + '').remove();
+    });
+});

@@ -25,12 +25,16 @@ namespace Resume_Builder.Controllers
         {
             return View();
         }
-
         [HttpPost]
-        public ActionResult FillDetails(FormCollection values, int id)
+        public ActionResult FillDetails(int id)
         {
-
             return View();
+        }
+        [HttpPost]
+        public ActionResult GetDetails(string formData)
+        {
+            formData = formData.Replace(@"\", "");
+            return RedirectToAction("FillDetails");
         }
 
         public ActionResult About()

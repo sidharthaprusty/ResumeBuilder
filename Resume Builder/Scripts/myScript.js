@@ -1,31 +1,9 @@
-﻿/// 
-//var output= document.getElementById('output');
-//var ajaxhttp = new XMLHttpRequest(); //adds functionality for ajax request
-//var url = "https://my-json-server.typicode.com/typicode/demo/db";
-////var url = "https://raw.githubusercontent.com/sidharthaprusty/ResumeBuilder/master/info.json";
-
-////Initializes Ajax request
-//ajaxhttp.open("GET", url, true);
-//ajaxhttp.setRequestHeader("Content-Type", "application/json");
-//ajaxhttp.onreadystatechange = function () {
-//    if (ajaxhttp.readyState == 4 && ajaxhttp.status == 200)
-//    {
-//        var jContent = ajaxhttp.responseText;
-//        console.log(jContent);
-//        //console.log(""+jContent);         
-        
-//    }
-//}
-
-//ajaxhttp.send(null);
-////console.log(ajaxhttp);
-
-function jsonBuilder(){
+﻿function jsonBuilder(){
     var achivements = [];
     var skills = [];
-    var name = $("input[name=name]").val();
-    var email = $("input[name=email]").val();
-    var phone = $("input[name=phone]").val();
+    var name = $("input[name=Cname]").val();
+    var email = $("input[name=Cemail]").val();
+    var phone = $("input[name=Cphone]").val();
     
     var sex = $("#sex :selected").text();
     var father = $("input[name=father]").val();
@@ -134,26 +112,26 @@ function nextPrev(n) {
         //...the form gets submitted:
         
         var formData = jsonBuilder();
-        //var id = $(this).attr(id);
-        //console.log("id=" + id);
-
+        var id = window.location.href.slice(window.location.href.lastIndexOf('/') + 1);//.split('&');
+        
         $.ajax({
             type: "POST",
-            url: "/Home/GetDetails",
-            data: "formData=" + formData,
+            url: "/Home/BuildResume",
+            data: "formData=" + formData + "&id=" + id,
             success: function (response) {
-                alert(response.toString());
+                alert("Hurray!!! Sit back and relax while we build the resume for you.");
                 document.getElementById("info").submit();
             },
             failure: function (response) {
-                alert("Failure");
+                alert("Failure!!! We are taking you back to where it started.");
+                location.reload();
             },
             error: function (response) {
-                alert(response.toString());
+                alert("Oops!!! Something went wrong.");
+                location.reload();
             }
         });
-        //document.getElementById("info").submit();
-
+        
         return false;
     }
     // Otherwise, display the correct tab:

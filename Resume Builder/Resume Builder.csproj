@@ -256,6 +256,7 @@
     <Content Include="Content\webfonts\fa-solid-900.woff2" />
     <Content Include="Content\info.json" />
     <Content Include="pdf\blank.pdf" />
+    <Content Include="pdf\blank2.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -26,7 +26,7 @@
     var year10 = $("input[name=year10]").val();
     var per10 = $("input[name=per10]").val();
     
-    academics10 = [board10, school, year10, per10];
+    academics10 = ["10",board10, school,"" ,year10, per10];
 
     var board12 = $("#board12 :selected").text();
     var jrCollege = $("input[name=jrCollege]").val();
@@ -34,7 +34,7 @@
     var year12 = $("input[name=year12]").val();
     var per12 = $("input[name=per12]").val();
 
-    academics12 = [board12, jrCollege, studyField, year12, per12];
+    academics12 = ["12", board12, jrCollege, studyField, year12, per12];
 
     var university = $("input[name=university]").val();
     var gradCollege = $("input[name=gradCollege]").val();
@@ -42,7 +42,7 @@
     var yearGr = $("input[name=yearGr]").val();
     var perGrad = $("input[name=perGrad]").val();
 
-    academicsGr = [university, gradCollege, gradDegree, yearGr, perGrad];
+    academicsGr = ["B.Sc(IT)", university, gradCollege, gradDegree, yearGr, perGrad];
 
     var pguniversity = $("input[name=pguniversity]").val();
     var pgCollege = $("input[name=pgCollege]").val();
@@ -50,7 +50,7 @@
     var yearPG = $("input[name=yearPG]").val();
     var perPG = $("input[name=perPG]").val();
 
-    academicsPG = [pguniversity, pgCollege, pgDegree, yearPG, perPG];
+    academicsPG = ["MCA",pguniversity, pgCollege, pgDegree, yearPG, perPG];
 
 
     var data = {
@@ -66,10 +66,10 @@
         "careerObj": careerObj,
         "achievements": [achievements],
         "skills": [skills],
-        "academics10": academics10,
-        "academics12": academics12,
-        "academicsGr": academicsGr,
-        "academicsPG": academicsPG
+        "academics": [academics10, academics12, academicsGr, academicsPG],
+        //"academics12": academics12,
+        //"academicsGr": academicsGr,
+        //"academicsPG": academicsPG
     };
     var jsonVal = JSON.stringify(data);
     return jsonVal;
@@ -190,5 +190,17 @@ $(document).ready(function () {
     $(document).on('click', '.btn_remove', function () {
         var button_id = $(this).attr("id");
         $('#row' + button_id + '').remove();
+    });
+
+    var $limitNum = 400;
+    var maxChars = $("#careerObj");
+    $('textarea[name="careerObj"]').keydown(function () {
+        var $this = $(this);
+        length = new Number(maxChars.val().length);
+        counter = $limitNum - length;
+        $("#sessionNum_counter").text(counter);
+        if ($this.val().length > $limitNum) {
+            $this.val($this.val().substring(0, $limitNum));
+        }
     });
 });

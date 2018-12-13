@@ -43,7 +43,10 @@ namespace Resume_Builder.Controllers
 
             //for testing
             int id = 1;
-            string formData = "{\"name\":\"Sidhartha Sankar Prusty\",\"email\":\"siddharth.prusty@gmail.com\",\"phone\":\"7873391346\",\"careerObj\":\"I'd like to know how I can stop the text overflowing a given region when writing. If possible it would be great if iText could also place an ellipsis character where the text does not fit. I can't find any method on ColumnText that will help either. I do not wish the content to wrap when writing. I'd like to know how I can stop the text overflowing a given region when writing. If possible it would\",\"sex\":\"Male\",\"father\":\"Pradyumna Prusty\",\"dob\":\"1995-05-03\",\"maritalSts\":\"Unmarried\",\"nationality\":\"Indian\",\"achievements\":[[\"asd\"]],\"skills\":[[\"asdsad\"]],\"academics\":[[\"10\",\"State Board\",\"Ravenshaw Collegiate School \",\"\",\"2010\",\"82.50\"],[\"12\",\"State Board\",\"Stewart Science College\",\"Science\",\"2012\",\"63\"],[\"B.Sc(IT)\",\"Ravenshaw University\",\"Ravenshaw University\",\"B.Sc.(IT)\",\"2015\",\"81.95\"],[\"MCA\",\"BPUT\",\"NIST\",\"MCA\",\"2017\",\"88.50\"]]}";
+            string formData = "{\"name\":\"Sidhartha Sankar Prusty\",\"email\":\"siddharth.prusty@gmail.com\",\"phone\":\"7873391346\",\"careerObj\":\"will write anything of 400 characters. and repeat my phrases.I will write anything of 400 characters.\\nand repeat my phrases.I will write anything of 400 characters. and repeat my phrases.I will write\\nanything of 400 characters. and repeat my phrases.I will write anything of 400 characters. and repeat\\nmy phrases.I will write anything of 400 characters. and repeat my phrases.I will write anything of\",\"sex\":\"Male\",\"father\":\"Pradyumna Prusty\",\"dob\":\"1995-05-03\",\"maritalSts\":\"Unmarried\",\"nationality\":\"Indian\",\"achievements\":[[\"aadsad\",\"dsasad\",\"adasdsad\",\"asdsad\"]],\"skills\":[[\"asdada\",\"adad\",\"sadasd\",\"sadad\"]],\"academics\":[[\"10\",\"\",\"State Board\",\"Ravenshaw Collegiate School\",\"82.50\",\"2010\"],[\"12\",\"Science\",\"State Board\",\"Stewart Science College\",\"78\",\"2012\"],[\"Graduation\",\"B.Sc(IT)\",\"Ravenshaw University\",\"Ravenshaw University\",\"81.95\",\"2015\"],[\"Post Graduation\",\"MCA\",\"BPUT\",\"NIST\",\"88.50\",\"2017\"]]}";
+
+            //string formData = "{\"name\":\"Sidhartha Sankar Prusty\",\"email\":\"siddharth.prusty@gmail.com\",\"phone\":\"7873391346\",\"careerObj\":\"will write anything of 400 characters. and repeat my phrases.I will write anything of 400 characters.\\nand repeat my phrases.I will write anything of 400 characters. and repeat my phrases.I will write\\nanything of 400 characters. and repeat my phrases.I will write anything of 400 characters. and repeat\\nmy phrases.I will write anything of 400 characters. and repeat my phrases.I will write anything of\",\"sex\":\"Male\",\"father\":\"Pradyumna Prusty\",\"dob\":\"1995-05-03\",\"maritalSts\":\"Unmarried\",\"nationality\":\"Indian\",\"achievements\":[[\"aadsad\",\"dsasad\",\"adasdsad\",\"asdsad\"]],\"skills\":[[\"asdada\",\"adad\",\"sadasd\",\"sadad\"]],\"academics\":[[\"10\",\"\",\"State Board\",\"Ravenshaw Collegiate School\",\"82.50\",\"2010\"],[\"12\",\"Science\",\"State Board\",\"Stewart Science College\",\"78\",\"2012\"],[\"Graduation\",\"B.Sc(IT)\",\"Ravenshaw University\",\"Ravenshaw University\",\"81.95\",\"2015\"]]}";
+
             JObject _jObject = new JObject();
             _jObject = JObject.Parse(formData);
 
@@ -51,8 +54,9 @@ namespace Resume_Builder.Controllers
             var FontColour = new BaseColor(0, 0, 0);
             Font header = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD | Font.UNDERLINE, BaseColor.BLACK);
             Font nameFont = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.BOLD, BaseColor.BLACK);
-            //var resumeFont = FontFactory.GetFont(FontFactory.TIMES_BOLD, 10, FontColour);
-            var contentFont = FontFactory.GetFont(FontFactory.TIMES_BOLD, 10, FontColour);
+            var headingFont = FontFactory.GetFont(FontFactory.TIMES_BOLD, 15, FontColour);
+            var contentFont = FontFactory.GetFont(FontFactory.TIMES_ROMAN, 10, FontColour);
+            var contentFont2 = FontFactory.GetFont(FontFactory.TIMES_ROMAN, 12, FontColour);
 
 
             System.IO.DirectoryInfo dirInfo = new System.IO.DirectoryInfo(System.Web.Hosting.HostingEnvironment.MapPath("~/pdf"));
@@ -76,19 +80,21 @@ namespace Resume_Builder.Controllers
                     //ColumnText.ShowTextAligned(content, Element.ALIGN_CENTER, new Phrase("RESUME", header), 300, 730, 0);                     
                     ColumnText.ShowTextAligned(content, Element.ALIGN_CENTER, new Phrase(_jObject.GetValue("name").ToString(), nameFont), 300, 750, 0);
                     ColumnText.ShowTextAligned(content, Element.ALIGN_CENTER, new Phrase(_jObject.GetValue("email").ToString() + " • " + _jObject.GetValue("phone"), contentFont), 300, 730, 0);
-                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase("CAREER OBJECTIVE:", contentFont), 50, 700, 0);
-                    LineSeparator lineSeparator = new LineSeparator();
-                    lineSeparator.DrawLine(content, 50, 590, 690);
 
+                    LineSeparator lineSeparator = new LineSeparator();
+                    lineSeparator.DrawLine(content, 50, 590, 720);
+
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase("CAREER OBJECTIVE:", headingFont), 50, 700, 0);
                     ColumnText ct = new ColumnText(content);
-                    ct.SetSimpleColumn(50f, 610f, 590f, 690f);
+                    ct.SetSimpleColumn(50f, 620f, 590f, 700f);
                     ct.AddElement(new Paragraph(_jObject.GetValue("careerObj").ToString()));
                     ct.Go();
-                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase("ACADEMIC QUALIFICATION:", contentFont), 50, 590, 0);
-                    lineSeparator.DrawLine(content, 50, 590, 580);
+                    float y = 600f;
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase("ACADEMIC QUALIFICATION:", headingFont), 50, y, 0);
+                    y -= 20;
 
                     PdfPTable table = new PdfPTable(6);
-                    ColumnText ct2 = new ColumnText(content);
+
                     table.AddCell("Course");
                     table.AddCell("Specialization");
                     table.AddCell("Board");
@@ -96,21 +102,78 @@ namespace Resume_Builder.Controllers
                     table.AddCell("Marks(%/CGPA)");
                     table.AddCell("Year of Completion");
                     table.HeaderRows = 1;
-                    table.SetWidths(new int[] { 15, 20, 20, 25, 25, 20 });
+                    table.SetWidths(new int[] { 17, 20, 20, 25, 25, 17 });
 
                     JArray academics = (JArray)_jObject.GetValue("academics");
-
+                    float ury = y;
+                    int count = 0;
                     foreach (var item in academics.Children())
                     {
                         foreach (var subItem in item.Children())
                         {
                             table.AddCell(subItem.ToString());
+                            y -= 20;
+                        }
+                        count++;
+                    }
+
+                    //ct.SetSimpleColumn(-10f, 240f, 650f, 590f);
+                    ct.SetSimpleColumn(-10f, y, 650f, ury);
+                    ct.AddElement(table);
+                    ct.Go();
+                    y = ((count == 4) ? 420 : 440);
+
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase("ACHIEVEMENTS:", headingFont), 50, y, 0);
+                    y -= 20;
+                    JArray achievements = (JArray)_jObject.GetValue("achievements");
+
+                    foreach (var item in achievements.Children())
+                    {
+                        foreach (var subItem in item.Children())
+                        {
+                            ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase(" • " + subItem.ToString(), contentFont2), 60, y, 0);
+                            y -= 20;
                         }
                     }
-                    Rectangle rectPage1 = new Rectangle(0, 200, 630, 550);
-                    ct2.SetSimpleColumn(rectPage1);
-                    ct2.AddElement(table);
-                    ct2.Go();
+
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase("SKILLS:", headingFont), 50, y, 0);
+                    y -= 20;
+
+                    JArray skills = (JArray)_jObject.GetValue("skills");
+                    foreach (var item in skills.Children())
+                    {
+                        foreach (var subItem in item.Children())
+                        {
+                            ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase(" • " + subItem.ToString(), contentFont2), 60, y, 0);
+                            y -= 20;
+                        }
+                    }
+
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase("PERSONAL INFORMATION:", headingFont), 50, y, 0);
+                    y -= 20;
+
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase(" • Father's Name :  " + _jObject.GetValue("father"), contentFont2), 60, y, 0);
+                    y -= 20;
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase(" • Date of Birth   :  " + _jObject.GetValue("dob"), contentFont2), 60, y, 0);
+                    y -= 20;
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase(" • Gender            :   " + _jObject.GetValue("sex"), contentFont2), 60, y, 0);
+                    y -= 20;
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase(" • Marital Status :   " + _jObject.GetValue("maritalSts"), contentFont2), 60, y, 0);
+                    y -= 20;
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase(" • Nationality      :   " + _jObject.GetValue("nationality"), contentFont2), 60, y, 0);
+                    y -= 20;
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase("DECLARATION:", headingFont), 50, y, 0);
+                    y -= 20;
+
+                    ct.SetSimpleColumn(50f, y - 20, 590f, y + 20);
+                    ct.AddElement(new Paragraph("I hereby declare that all the above mentioned information given by me is true and correct to the best of my knowledge and belief."));
+                    ct.Go();
+
+                    y -= 30;
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_LEFT, new Phrase("Place:", headingFont), 50, y, 0);
+                    y -= 20;
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_LEFT, new Phrase("Date :", headingFont), 50, y, 0);
+                    ColumnText.ShowTextAligned(content, Element.ALIGN_CENTER, new Phrase("Signature", headingFont), 470, y, 0);
 
                 }
                 stamper.Close();

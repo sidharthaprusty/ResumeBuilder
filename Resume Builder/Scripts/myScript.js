@@ -26,7 +26,7 @@
     var year10 = $("input[name=year10]").val();
     var per10 = $("input[name=per10]").val();
     
-    academics10 = ["10",board10, school,"" ,year10, per10];
+    academics10 = ["10", "", board10, school, per10, year10];
 
     var board12 = $("#board12 :selected").text();
     var jrCollege = $("input[name=jrCollege]").val();
@@ -34,7 +34,7 @@
     var year12 = $("input[name=year12]").val();
     var per12 = $("input[name=per12]").val();
 
-    academics12 = ["12", board12, jrCollege, studyField, year12, per12];
+    academics12 = ["12", studyField, board12, jrCollege, per12, year12];
 
     var university = $("input[name=university]").val();
     var gradCollege = $("input[name=gradCollege]").val();
@@ -42,7 +42,7 @@
     var yearGr = $("input[name=yearGr]").val();
     var perGrad = $("input[name=perGrad]").val();
 
-    academicsGr = ["B.Sc(IT)", university, gradCollege, gradDegree, yearGr, perGrad];
+    academicsGr = ["Graduation", gradDegree, university, gradCollege, perGrad, yearGr];
 
     var pguniversity = $("input[name=pguniversity]").val();
     var pgCollege = $("input[name=pgCollege]").val();
@@ -50,7 +50,7 @@
     var yearPG = $("input[name=yearPG]").val();
     var perPG = $("input[name=perPG]").val();
 
-    academicsPG = ["MCA",pguniversity, pgCollege, pgDegree, yearPG, perPG];
+    academicsPG = ["Post Graduation", pgDegree,pguniversity, pgCollege,perPG, yearPG];
 
 
     var data = {

@@ -40,7 +40,6 @@ namespace Resume_Builder.Controllers
         //[HttpPost]
         public ActionResult BuildResume()
         {
-
             //for testing
             int id = 1;
             string formData = "{\"name\":\"Sidhartha Sankar Prusty\",\"email\":\"siddharth.prusty@gmail.com\",\"phone\":\"7873391346\",\"careerObj\":\"will write anything of 400 characters. and repeat my phrases.I will write anything of 400 characters.\\nand repeat my phrases.I will write anything of 400 characters. and repeat my phrases.I will write\\nanything of 400 characters. and repeat my phrases.I will write anything of 400 characters. and repeat\\nmy phrases.I will write anything of 400 characters. and repeat my phrases.I will write anything of\",\"sex\":\"Male\",\"father\":\"Pradyumna Prusty\",\"dob\":\"1995-05-03\",\"maritalSts\":\"Unmarried\",\"nationality\":\"Indian\",\"achievements\":[[\"aadsad\",\"dsasad\",\"adasdsad\",\"asdsad\"]],\"skills\":[[\"asdada\",\"adad\",\"sadasd\",\"sadad\"]],\"academics\":[[\"10\",\"\",\"State Board\",\"Ravenshaw Collegiate School\",\"82.50\",\"2010\"],[\"12\",\"Science\",\"State Board\",\"Stewart Science College\",\"78\",\"2012\"],[\"Graduation\",\"B.Sc(IT)\",\"Ravenshaw University\",\"Ravenshaw University\",\"81.95\",\"2015\"],[\"Post Graduation\",\"MCA\",\"BPUT\",\"NIST\",\"88.50\",\"2017\"]]}";
@@ -180,7 +179,7 @@ namespace Resume_Builder.Controllers
                 reader.Close();
 
                 //Delete previous pdf if existing
-                System.IO.DirectoryInfo DownloadsPDF = new System.IO.DirectoryInfo(@"D:\\resumeBuilder\Downloads\");
+                System.IO.DirectoryInfo DownloadsPDF = new System.IO.DirectoryInfo(@"D:\resumeBuilder\Downloads\");
                 foreach (System.IO.FileInfo file in DownloadsPDF.GetFiles(_jObject.GetValue("email") + ".pdf"))
                 {
                     file.Delete();
@@ -191,6 +190,8 @@ namespace Resume_Builder.Controllers
                 {
                     file.MoveTo(@"D:\resumeBuilder\Downloads\" + _jObject.GetValue("email") + ".pdf");
                 }
+                TempData["message"] = _jObject.GetValue("email") + ".pdf";
+                //DownloadPDF(_jObject.GetValue("email") + ".pdf");
             }
             catch (Exception e)
             {
@@ -212,7 +213,8 @@ namespace Resume_Builder.Controllers
                 }
             }
 
-            return RedirectToAction("FillDetails");
+            return RedirectToAction("DownloadPDF");
+            //return RedirectToAction("DownloadPDF", "Home", new { y });
         }
 
         public ActionResult About()
@@ -228,6 +230,43 @@ namespace Resume_Builder.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult DownloadPDF()
+        {
+            ViewBag.filename = TempData["message"] as string;
+            return View(ViewBag);
+        }
+
+        [HttpPost]
+        public ActionResult DownloadPDF(string filename)
+        {
+            try
+            {
+                System.IO.DirectoryInfo PDFpathDownload = new System.IO.DirectoryInfo(@"D:\resumeBuilder\Downloads\");
+
+                foreach (System.IO.FileInfo file in PDFpathDownload.GetFiles(filename))
+                {
+                    return File(file.FullName, "application/pdf");
+                }
+                return null;
+            }
+            catch (Exception exceptionObject)
+            {
+                using (StreamWriter w = System.IO.File.AppendText(@"D:\resumeBuilder\log.txt"))
+                {
+                    w.WriteLine("\r\nError Log Entry : ");
+                    w.WriteLine("Error occured in DownloadPDF method of Home controller  on {0}", DateTime.Now);
+                    w.WriteLine("Error Information : ");
+                    w.WriteLine("Message: {0} \n, InnerException: {1} \n, StackTrace {2} \n, Data {3} \n", exceptionObject.Message, exceptionObject.InnerException, exceptionObject.StackTrace, exceptionObject.Data);
+                    w.WriteLine("-----------------------------------------------------------------------------------------------");
+                    w.WriteLine();
+                    w.WriteLine();
+                }
+                return null;
+            }
+        }
+
 
     }
 }

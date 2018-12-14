@@ -50,9 +50,9 @@
     var yearPG = $("input[name=yearPG]").val();
     var perPG = $("input[name=perPG]").val();
 
-    academicsPG = ["Post Graduation", pgDegree,pguniversity, pgCollege,perPG, yearPG];
-
-
+    if ($('#postGradCheck').prop("checked") == true)
+        academicsPG = ["Post Graduation", pgDegree, pguniversity, pgCollege, perPG, yearPG];
+    
     var data = {
         "name": name,
         "email":email,
@@ -67,9 +67,6 @@
         "achievements": [achievements],
         "skills": [skills],
         "academics": [academics10, academics12, academicsGr, academicsPG],
-        //"academics12": academics12,
-        //"academicsGr": academicsGr,
-        //"academicsPG": academicsPG
     };
     var jsonVal = JSON.stringify(data);
     return jsonVal;
@@ -174,6 +171,7 @@ function fixStepIndicator(n) {
 $(document).ready(function () {
     var i = 1;
     var j = 1;
+    $("#postGraduation").hide();
     $('#add').click(function () {
         i++;
         $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="achievements[]" placeholder="Enter your achievements" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
@@ -202,5 +200,11 @@ $(document).ready(function () {
         if ($this.val().length > $limitNum) {
             $this.val($this.val().substring(0, $limitNum));
         }
+    });
+
+    /****Post Graduation option Show/Hide*****/
+    $("input[name$='postGradCheck']").click(function () {
+        //$("#test").attr("class", "tab");
+        $("#postGraduation").toggle();
     });
 });

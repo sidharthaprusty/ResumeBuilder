@@ -414,7 +414,6 @@
                         <input type="text" name="gradCollege" class="form-control" placeholder="Enter the name of your College">
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="control-label col-sm-2">Degree:</label>
                     <div class="col-sm-10">
@@ -427,20 +426,25 @@
                         <input type="number" min="2005" max="2099" step="1" value="YYYY" name="yearGr" class="form-control" placeholder="YYYY">
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="control-label col-sm-2">Percentage/CGPA:</label>
                     <div class="col-sm-10">
                         <input type="text"name="perGrad" class="form-control" placeholder="Enter Graduation % or Grade ">
                     </div>
                 </div>
-            </div>
-            
+                <div class="form-group">
+                    <label class="control-label col-sm-2"></label>
+                    <div class="control-label col-sm-2">
+                        <input type="checkbox" name="postGradCheck" />Done Post Graduation?
+                    </div>
+                </div>
+            </div>   
+                     
             <!--Sixth Tab-->
-            <div class="tab">
-                <h3 style="text-align: center;">
+            <div id="postGraduation">
+                @*<h3 style="text-align: center;">
                     Let's showcase your academics
-                </h3>
+                </h3>*@
                 <h4>Post Graduation: </h4>
                 <hr />
                 <div class="form-group">
@@ -455,7 +459,6 @@
                         <input type="text" name="pgCollege" class="form-control" placeholder="Enter the name of your College">
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="control-label col-sm-2">Degree:</label>
                     <div class="col-sm-10">
@@ -468,14 +471,14 @@
                         <input type="number" min="2005" max="2099" step="1" name="yearPG" class="form-control" placeholder="YYYY">
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="control-label col-sm-2">Percentage/CGPA:</label>
                     <div class="col-sm-10">
-                        <input type="text"name="perPG" class="form-control" placeholder="Enter Post Graduation % or Grade ">
+                        <input type="text" name="perPG" class="form-control" placeholder="Enter Post Graduation % or Grade ">
                     </div>
                 </div>
             </div>
+            
             <!-- Circles which indicates the steps of the form: -->
             <div style="text-align:center;margin-top:40px;">
                 <span class="step"></span>

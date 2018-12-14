@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "DownloadPDF";
+}
+
+<h2>DownloadPDF</h2>
+@using (Html.BeginForm("DownloadPDF", "Home", FormMethod.Post))
+{
+    @ViewBag.fileName
+    <input type="hidden" name="filename" value=@ViewBag.fileName />
+    <input type="submit" class="btn btn-success" value="Download Resume" />
+}
+
+@*<button type="button" class="btn btn-success" onclick="location.href = '/Home/DownloadResume/';">Download Resume</button>*@

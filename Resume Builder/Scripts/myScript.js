@@ -173,8 +173,13 @@ $(document).ready(function () {
     var j = 1;
     $("#postGraduation").hide();
     $('#add').click(function () {
-        i++;
-        $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="achievements[]" placeholder="Enter your achievements" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+        if (i <= 3)
+        {
+            i++;
+            $('#dynamic_field').append('<tr id="row' + i + '"><td><input type="text" name="achievements[]" placeholder="Enter your achievements" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+        }
+        else
+            alert("Whoa!!! List down your top 4 achievements. Keep the rest to surprise your interviewer");
     });
     $(document).on('click', '.btn_remove', function () {
         var button_id = $(this).attr("id");
@@ -182,14 +187,20 @@ $(document).ready(function () {
     });
 
     $('#addSkill').click(function () {
-        j++;
-        $('#dynamic_field_skill').append('<tr id="row' + j + '"><td><input type="text" name="skills[]" placeholder="Enter your skills" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + j + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+        if (j <= 3) {
+            j++;
+            $('#dynamic_field_skill').append('<tr id="row' + j + '"><td><input type="text" name="skills[]" placeholder="Enter your skills" class="form-control name_list" /></td><td><button type="button" name="remove" id="' + j + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+        }
+        else
+            alert("Whoa!!! List down your top 4 Skills. Let the ball stay in your court always");
     });
+
     $(document).on('click', '.btn_remove', function () {
         var button_id = $(this).attr("id");
         $('#row' + button_id + '').remove();
     });
 
+    /****Career Objective validation****/
     var $limitNum = 400;
     var maxChars = $("#careerObj");
     $('textarea[name="careerObj"]').keydown(function () {
@@ -204,7 +215,6 @@ $(document).ready(function () {
 
     /****Post Graduation option Show/Hide*****/
     $("input[name$='postGradCheck']").click(function () {
-        //$("#test").attr("class", "tab");
         $("#postGraduation").toggle();
     });
 });

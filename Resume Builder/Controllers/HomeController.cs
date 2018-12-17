@@ -42,9 +42,9 @@ namespace Resume_Builder.Controllers
         {
             //for testing
             int id = 1;
-            string formData = "{\"name\":\"Sidhartha Sankar Prusty\",\"email\":\"siddharth.prusty@gmail.com\",\"phone\":\"7873391346\",\"careerObj\":\"will write anything of 400 characters. and repeat my phrases.I will write anything of 400 characters.\\nand repeat my phrases.I will write anything of 400 characters. and repeat my phrases.I will write\\nanything of 400 characters. and repeat my phrases.I will write anything of 400 characters. and repeat\\nmy phrases.I will write anything of 400 characters. and repeat my phrases.I will write anything of\",\"sex\":\"Male\",\"father\":\"Pradyumna Prusty\",\"dob\":\"1995-05-03\",\"maritalSts\":\"Unmarried\",\"nationality\":\"Indian\",\"achievements\":[[\"aadsad\",\"dsasad\",\"adasdsad\",\"asdsad\"]],\"skills\":[[\"asdada\",\"adad\",\"sadasd\",\"sadad\"]],\"academics\":[[\"10\",\"\",\"State Board\",\"Ravenshaw Collegiate School\",\"82.50\",\"2010\"],[\"12\",\"Science\",\"State Board\",\"Stewart Science College\",\"78\",\"2012\"],[\"Graduation\",\"B.Sc(IT)\",\"Ravenshaw University\",\"Ravenshaw University\",\"81.95\",\"2015\"],[\"Post Graduation\",\"MCA\",\"BPUT\",\"NIST\",\"88.50\",\"2017\"]]}";
+            //string formData = "{\"name\":\"Sidhartha Sankar Prusty\",\"email\":\"siddharth.prusty@gmail.com\",\"phone\":\"7873391346\",\"careerObj\":\"will write anything of 400 characters. and repeat my phrases.I will write anything of 400 characters.\\nand repeat my phrases.I will write anything of 400 characters. and repeat my phrases.I will write\\nanything of 400 characters. and repeat my phrases.I will write anything of 400 characters. and repeat\\nmy phrases.I will write anything of 400 characters. and repeat my phrases.I will write anything of\",\"sex\":\"Male\",\"father\":\"Pradyumna Prusty\",\"dob\":\"1995-05-03\",\"maritalSts\":\"Unmarried\",\"nationality\":\"Indian\",\"achievements\":[[\"aadsad\",\"dsasad\",\"adasdsad\",\"asdsad\"]],\"skills\":[[\"asdada\",\"adad\",\"sadasd\",\"sadad\"]],\"academics\":[[\"10\",\"\",\"State Board\",\"Ravenshaw Collegiate School\",\"82.50\",\"2010\"],[\"12\",\"Science\",\"State Board\",\"Stewart Science College\",\"78\",\"2012\"],[\"Graduation\",\"B.Sc(IT)\",\"Ravenshaw University\",\"Ravenshaw University\",\"81.95\",\"2015\"],[\"Post Graduation\",\"MCA\",\"BPUT\",\"NIST\",\"88.50\",\"2017\"]]}";
 
-            //string formData = "{\"name\":\"Sidhartha Sankar Prusty\",\"email\":\"siddharth.prusty@gmail.com\",\"phone\":\"7873391346\",\"careerObj\":\"will write anything of 400 characters. and repeat my phrases.I will write anything of 400 characters.\\nand repeat my phrases.I will write anything of 400 characters. and repeat my phrases.I will write\\nanything of 400 characters. and repeat my phrases.I will write anything of 400 characters. and repeat\\nmy phrases.I will write anything of 400 characters. and repeat my phrases.I will write anything of\",\"sex\":\"Male\",\"father\":\"Pradyumna Prusty\",\"dob\":\"1995-05-03\",\"maritalSts\":\"Unmarried\",\"nationality\":\"Indian\",\"achievements\":[[\"aadsad\",\"dsasad\",\"adasdsad\",\"asdsad\"]],\"skills\":[[\"asdada\",\"adad\",\"sadasd\",\"sadad\"]],\"academics\":[[\"10\",\"\",\"State Board\",\"Ravenshaw Collegiate School\",\"82.50\",\"2010\"],[\"12\",\"Science\",\"State Board\",\"Stewart Science College\",\"78\",\"2012\"],[\"Graduation\",\"B.Sc(IT)\",\"Ravenshaw University\",\"Ravenshaw University\",\"81.95\",\"2015\"]]}";
+            string formData = "{\"name\":\"Sidhartha Sankar Prusty\",\"email\":\"siddharth.prusty@gmail.com\",\"phone\":\"7873391346\",\"careerObj\":\"will write anything of 400 characters. and repeat my phrases.I will write anything of 400 characters.\\nand repeat my phrases.I will write anything of 400 characters. and repeat my phrases.I will write\\nanything of 400 characters. and repeat my phrases.I will write anything of 400 characters. and repeat\\nmy phrases.I will write anything of 400 characters. and repeat my phrases.I will write anything of\",\"sex\":\"Male\",\"father\":\"Pradyumna Prusty\",\"dob\":\"1995-05-03\",\"maritalSts\":\"Unmarried\",\"nationality\":\"Indian\",\"achievements\":[[\"aadsad\",\"dsasad\",\"adasdsad\",\"asdsad\"]],\"skills\":[[\"asdada\",\"adad\",\"sadasd\",\"sadad\"]],\"academics\":[[\"10\",\"\",\"State Board\",\"Ravenshaw Collegiate School\",\"82.50\",\"2010\"],[\"12\",\"Science\",\"State Board\",\"Stewart Science College\",\"78\",\"2012\"],[\"Graduation\",\"B.Sc(IT)\",\"Ravenshaw University\",\"Ravenshaw University\",\"81.95\",\"2015\"]]}";
 
             JObject _jObject = new JObject();
             _jObject = JObject.Parse(formData);
@@ -117,10 +117,10 @@ namespace Resume_Builder.Controllers
                     }
 
                     //ct.SetSimpleColumn(-10f, 240f, 650f, 590f);
-                    ct.SetSimpleColumn(-10f, y, 650f, ury);
+                    ct.SetSimpleColumn(-10f, y + 10, 650f, ury + 10);
                     ct.AddElement(table);
                     ct.Go();
-                    y = ((count == 4) ? 420 : 440);
+                    y = ((count == 4) ? 430 : 450);
 
                     ColumnText.ShowTextAligned(content, Element.ALIGN_JUSTIFIED, new Phrase("ACHIEVEMENTS:", headingFont), 50, y, 0);
                     y -= 20;
@@ -168,7 +168,7 @@ namespace Resume_Builder.Controllers
                     ct.AddElement(new Paragraph("I hereby declare that all the above mentioned information given by me is true and correct to the best of my knowledge and belief."));
                     ct.Go();
 
-                    y -= 30;
+                    y -= 40;
                     ColumnText.ShowTextAligned(content, Element.ALIGN_LEFT, new Phrase("Place:", headingFont), 50, y, 0);
                     y -= 20;
                     ColumnText.ShowTextAligned(content, Element.ALIGN_LEFT, new Phrase("Date :", headingFont), 50, y, 0);

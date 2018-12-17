@@ -765,6 +765,14 @@ pre code {
   margin-left: auto;
 }
 
+/*Added by Sidhartha*/
+.container.formInfo{
+  padding-right: 15px;
+  padding-left: 230px;
+  margin-right: auto;
+  margin-left: auto;
+}
+/*End*/
 .container:before,
 .container:after {
   display: table;
